@@ -7,7 +7,7 @@
 
         <variable
             name="list"
-            type="com.eslamwaheed.mvvmdemo.data.UnsplashSearchResponse.Result" />
+            type="com.eslamwaheed.mvvmdemo.data.models.UnsplashSearchResponse.Result" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,5 +26,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,5 +1,7 @@
-package com.eslamwaheed.mvvmdemo.data
+package com.eslamwaheed.mvvmdemo.data.models
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -16,20 +18,23 @@ data class UnsplashSearchResponse(
     data class Result(
         @PrimaryKey
         @SerializedName("id")
-        val id: String?,
+        val id: String,
         @SerializedName("width")
         val width: Int?,
         @SerializedName("height")
         val height: Int?,
         @SerializedName("description")
-        val description: Any?,
+        val description: String?,
         @SerializedName("alt_description")
         val altDescription: String?,
+        @Embedded
         @SerializedName("urls")
         val urls: Urls?
     ) {
         @Entity
         data class Urls(
+            @PrimaryKey @ColumnInfo(name = "url_id")
+            val urlID: Int,
             @SerializedName("full")
             val full: String?,
             @SerializedName("regular")

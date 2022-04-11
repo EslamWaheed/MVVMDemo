@@ -3,7 +3,7 @@ package com.eslamwaheed.mvvmdemo.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eslamwaheed.mvvmdemo.data.UnsplashSearchResponse
+import com.eslamwaheed.mvvmdemo.data.models.UnsplashSearchResponse
 import com.eslamwaheed.mvvmdemo.databinding.PhotosItemBinding
 
 class PhotosAdapter(private val list: List<UnsplashSearchResponse.Result?>?) :

@@ -53,7 +53,7 @@ dependencies {
     //lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     //coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
     //hilt
     implementation 'com.google.dagger:hilt-android:2.40'
     kapt 'com.google.dagger:hilt-compiler:2.40'
@@ -68,5 +68,6 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     //room
     implementation 'androidx.room:room-runtime:2.4.2'
+    implementation 'androidx.room:room-ktx:2.4.2'
     kapt 'androidx.room:room-compiler:2.4.2'
 }
