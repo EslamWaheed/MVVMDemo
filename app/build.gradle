@@ -14,7 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "UNSPLASH_ACCESS_KEY", "\"ltWnHtLqTWiG-rJhaoMMT4cQTIDJDnEmKfKmVooAeR8\"")
+        buildConfigField("String", "UNSPLASH_ACCESS_KEY", UNSPLASH_ACCESS_KEY)
     }
 
     buildTypes {
