@@ -8,9 +8,9 @@ data class UnsplashSearchResponse(
     @SerializedName("total_pages")
     val totalPages: Int?,
     @SerializedName("results")
-    val results: ArrayList<Result?>?
+    val photos: ArrayList<Photos?>?
 ) {
-    data class Result(
+    data class Photos(
         @SerializedName("id")
         val id: String?,
         @SerializedName("created_at")

@@ -87,3 +87,6 @@ lint/tmp/
 gradle.properties'.idea' 
 '.idea' 
 'gradle.properties' 
+/.idea/compiler.xml
+/gradle.properties
+/.idea/misc.xml

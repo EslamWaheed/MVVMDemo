@@ -14,11 +14,15 @@ import javax.inject.Inject
 class UnsplashViewModel @Inject constructor(private val repository: UnsplashRepository) :
     ViewModel() {
 
+    init {
+        searchPictures("flower")
+    }
+
     val unsplashSearchResponseLiveData = MutableLiveData<UnsplashSearchResponse>()
 
-    fun searchPictures(query: String) {
+    fun searchPictures(query: String, pageNumber: Int = 10) {
         viewModelScope.launch(IO) {
-            repository.getSearchResultStream(query).apply {
+            with(repository.getSearchResultStream(query, pageNumber)) {
                 unsplashSearchResponseLiveData.postValue(this)
             }
         }
