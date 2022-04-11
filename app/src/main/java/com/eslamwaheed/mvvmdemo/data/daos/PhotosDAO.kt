@@ -10,11 +10,11 @@ import com.eslamwaheed.mvvmdemo.data.models.UnsplashSearchResponse
 interface PhotosDAO {
 
     @Insert
-    suspend fun insertPhoto(result: UnsplashSearchResponse.Result)
+    suspend fun insertPhoto(result: UnsplashSearchResponse.Result?)
 
     @Delete()
     suspend fun deletePhoto(result: UnsplashSearchResponse.Result)
 
     @Query("select * from Result")
-    suspend fun getAllPhotos(): List<UnsplashSearchResponse.Result>
+    suspend fun getAllPhotos(): List<UnsplashSearchResponse.Result?>?
 }

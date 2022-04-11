@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         viewModel.searchPictures("flower")
         viewModel.unsplashSearchResponseLiveData.observe(this) {
-            adapter = PhotosAdapter(it.results)
+            adapter = PhotosAdapter(it)
             binding.rvPhotos.adapter = adapter
         }
     }

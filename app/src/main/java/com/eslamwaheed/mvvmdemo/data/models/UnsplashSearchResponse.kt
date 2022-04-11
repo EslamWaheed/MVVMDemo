@@ -16,9 +16,8 @@ data class UnsplashSearchResponse(
 ) {
     @Entity
     data class Result(
-        @PrimaryKey
-        @SerializedName("id")
-        val id: String,
+        @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "result_id")
+        val result_id: Int,
         @SerializedName("width")
         val width: Int?,
         @SerializedName("height")
@@ -33,7 +32,7 @@ data class UnsplashSearchResponse(
     ) {
         @Entity
         data class Urls(
-            @PrimaryKey @ColumnInfo(name = "url_id")
+            @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "url_id")
             val urlID: Int,
             @SerializedName("full")
             val full: String?,

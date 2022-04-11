@@ -14,9 +14,10 @@ import javax.inject.Inject
 class UnsplashViewModel @Inject constructor(private val repository: UnsplashRepository) :
     ViewModel() {
 
-    val unsplashSearchResponseLiveData = MutableLiveData<UnsplashSearchResponse>()
+    val unsplashSearchResponseLiveData =
+        MutableLiveData<ArrayList<UnsplashSearchResponse.Result?>?>()
 
-    val photosLiveData = MutableLiveData<ArrayList<UnsplashSearchResponse.Result>>()
+    val photosLiveData = MutableLiveData<ArrayList<UnsplashSearchResponse.Result?>?>()
 
     fun searchPictures(query: String) {
         viewModelScope.launch(IO) {

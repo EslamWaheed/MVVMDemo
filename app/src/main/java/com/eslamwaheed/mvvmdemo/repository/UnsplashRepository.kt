@@ -9,11 +9,22 @@ class UnsplashRepository @Inject constructor(
     private val service: UnsplashService,
     private val dao: PhotosDAO
 ) {
-    suspend fun getSearchResultStream(query: String): UnsplashSearchResponse {
-        return service.searchPhotos(query, 1, NETWORK_PAGE_SIZE)
+    suspend fun getSearchResultStream(query: String): ArrayList<UnsplashSearchResponse.Result?>? {
+        val photosList: ArrayList<UnsplashSearchResponse.Result?>? =
+            try {
+                service.searchPhotos(query, 1, NETWORK_PAGE_SIZE).apply {
+                    val result = this?.results
+                    result?.forEach {
+                        insertPhoto(it)
+                    }
+                }?.results
+            } catch (e: Exception) {
+                getAllPhotos()
+            }
+        return photosList
     }
 
-    suspend fun insertPhoto(result: UnsplashSearchResponse.Result) {
+    suspend fun insertPhoto(result: UnsplashSearchResponse.Result?) {
         dao.insertPhoto(result)
     }
 
@@ -21,11 +32,11 @@ class UnsplashRepository @Inject constructor(
         dao.deletePhoto(result)
     }
 
-    suspend fun getAllPhotos(): ArrayList<UnsplashSearchResponse.Result> {
-        return dao.getAllPhotos() as ArrayList<UnsplashSearchResponse.Result>
+    suspend fun getAllPhotos(): ArrayList<UnsplashSearchResponse.Result?>? {
+        return dao.getAllPhotos() as ArrayList<UnsplashSearchResponse.Result?>?
     }
 
     companion object {
-        private const val NETWORK_PAGE_SIZE = 5
+        private const val NETWORK_PAGE_SIZE = 1
     }
 }
