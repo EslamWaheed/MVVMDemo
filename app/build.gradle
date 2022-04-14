@@ -9,12 +9,17 @@ android {
     compileSdk 32
     defaultConfig {
         applicationId "com.eslamwaheed.mvvmdemo"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "UNSPLASH_ACCESS_KEY", "\"ltWnHtLqTWiG-rJhaoMMT4cQTIDJDnEmKfKmVooAeR8\"")
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {

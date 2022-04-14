@@ -1,9 +1,6 @@
 package com.eslamwaheed.mvvmdemo.data.models
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 data class UnsplashSearchResponse(
