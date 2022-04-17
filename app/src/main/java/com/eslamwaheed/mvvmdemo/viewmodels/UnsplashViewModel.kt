@@ -18,10 +18,15 @@ class UnsplashViewModel @Inject constructor(private val repository: UnsplashRepo
         MutableLiveData<ArrayList<UnsplashSearchResponse.Result?>?>()
 
     val photosLiveData = MutableLiveData<ArrayList<UnsplashSearchResponse.Result?>?>()
+    init {
+        searchPictures("flower")
+    }
 
-    fun searchPictures(query: String) {
+    val unsplashSearchResponseLiveData = MutableLiveData<UnsplashSearchResponse>()
+
+    fun searchPictures(query: String, pageNumber: Int = 10) {
         viewModelScope.launch(IO) {
-            repository.getSearchResultStream(query).apply {
+            with(repository.getSearchResultStream(query, pageNumber)) {
                 unsplashSearchResponseLiveData.postValue(this)
             }
         }

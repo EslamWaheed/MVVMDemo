@@ -1,6 +1,7 @@
 package com.eslamwaheed.mvvmdemo.api
 
 import com.eslamwaheed.mvvmdemo.BuildConfig
+import com.eslamwaheed.mvvmdemo.data.UnsplashSearchResponse
 import com.eslamwaheed.mvvmdemo.data.models.UnsplashSearchResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
