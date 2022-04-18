@@ -30,7 +30,7 @@ class PhotosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.unsplashSearchResponseLiveData.observe(viewLifecycleOwner) {
-            it?.photos?.let {
+            it?.let {
                 adapter.setList(it)
                 binding.rvPhotos.adapter = adapter
             }
