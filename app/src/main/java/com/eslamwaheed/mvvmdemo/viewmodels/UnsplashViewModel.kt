@@ -3,7 +3,7 @@ package com.eslamwaheed.mvvmdemo.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.eslamwaheed.mvvmdemo.data.models.UnsplashSearchResponse
+import com.eslamwaheed.mvvmdemo.data.models.entities.Photos
 import com.eslamwaheed.mvvmdemo.repository.UnsplashRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
@@ -15,39 +15,16 @@ class UnsplashViewModel @Inject constructor(private val repository: UnsplashRepo
     ViewModel() {
 
     val unsplashSearchResponseLiveData =
-        MutableLiveData<ArrayList<UnsplashSearchResponse.Result?>?>()
+        MutableLiveData<ArrayList<Photos?>?>()
 
-    val photosLiveData = MutableLiveData<ArrayList<UnsplashSearchResponse.Result?>?>()
     init {
         searchPictures("flower")
     }
-
-    val unsplashSearchResponseLiveData = MutableLiveData<UnsplashSearchResponse>()
 
     fun searchPictures(query: String, pageNumber: Int = 10) {
         viewModelScope.launch(IO) {
             with(repository.getSearchResultStream(query, pageNumber)) {
                 unsplashSearchResponseLiveData.postValue(this)
-            }
-        }
-    }
-
-    suspend fun insertPhoto(result: UnsplashSearchResponse.Result) {
-        viewModelScope.launch(IO) {
-            repository.insertPhoto(result)
-        }
-    }
-
-    suspend fun deletePhoto(result: UnsplashSearchResponse.Result) {
-        viewModelScope.launch(IO) {
-            repository.deletePhoto(result)
-        }
-    }
-
-    suspend fun getAllPhotos() {
-        viewModelScope.launch(IO) {
-            repository.getAllPhotos().apply {
-                photosLiveData.postValue(this)
             }
         }
     }

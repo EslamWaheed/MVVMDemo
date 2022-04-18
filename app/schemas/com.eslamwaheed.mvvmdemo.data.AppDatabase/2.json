@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "d9e84aee98984ba15cbf59d4397b2f8a",
+    "identityHash": "f36a404a3f60da01cb843c1852bc458d",
     "entities": [
       {
-        "tableName": "Result",
+        "tableName": "Photos",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`result_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `width` INTEGER, `height` INTEGER, `description` TEXT, `altDescription` TEXT, `url_id` INTEGER, `full` TEXT, `regular` TEXT, `small` TEXT)",
         "fields": [
           {
@@ -114,7 +114,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd9e84aee98984ba15cbf59d4397b2f8a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f36a404a3f60da01cb843c1852bc458d')"
     ]
   }
 }

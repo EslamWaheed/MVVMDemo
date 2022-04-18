@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eslamwaheed.mvvmdemo.data.models.UnsplashSearchResponse
+import com.eslamwaheed.mvvmdemo.data.models.entities.Photos
 import com.eslamwaheed.mvvmdemo.databinding.PhotosItemBinding
 
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
-    private val list: ArrayList<UnsplashSearchResponse.Photos?> = arrayListOf()
+    private val list: ArrayList<Photos?> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
         return PhotosViewHolder(
@@ -32,7 +32,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
     class PhotosViewHolder(private val binding: PhotosItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: UnsplashSearchResponse.Photos) {
+        fun bind(item: Photos) {
             binding.apply {
                 list = item
                 executePendingBindings()
@@ -41,7 +41,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(currentList: ArrayList<UnsplashSearchResponse.Photos?>, clear: Boolean = false) {
+    fun setList(currentList: ArrayList<Photos?>, clear: Boolean = false) {
         if (clear) {
             list.clear()
         }

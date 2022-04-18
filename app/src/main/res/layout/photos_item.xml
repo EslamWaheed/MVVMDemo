@@ -7,7 +7,7 @@
 
         <variable
             name="list"
-            type="com.eslamwaheed.mvvmdemo.data.UnsplashSearchResponse.Photos" />
+            type="com.eslamwaheed.mvvmdemo.data.models.entities.Photos" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
