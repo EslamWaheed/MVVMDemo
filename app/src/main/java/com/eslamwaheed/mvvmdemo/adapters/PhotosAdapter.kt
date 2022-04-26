@@ -1,15 +1,17 @@
 package com.eslamwaheed.mvvmdemo.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.eslamwaheed.mvvmdemo.data.models.entities.Photos
 import com.eslamwaheed.mvvmdemo.databinding.PhotosItemBinding
 
-class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
+class PhotosAdapter :
+    PagingDataAdapter<Photos, PhotosAdapter.PhotosViewHolder>(PhotoDiffCallback()) {
 
-    private val list: ArrayList<Photos?> = arrayListOf()
+    //private val list: ArrayList<Photos?> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
         return PhotosViewHolder(
@@ -22,13 +24,10 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
-        val photo = list[position]
+        val photo = getItem(position)
         photo?.let { holder.bind(it) }
     }
 
-    override fun getItemCount(): Int {
-        return if (list.isNotEmpty()) list.size else 0
-    }
 
     class PhotosViewHolder(private val binding: PhotosItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -40,12 +39,22 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setList(currentList: ArrayList<Photos?>, clear: Boolean = false) {
-        if (clear) {
-            list.clear()
-        }
-        list.addAll(currentList)
-        notifyDataSetChanged()
+//    @SuppressLint("NotifyDataSetChanged")
+//    fun setList(currentList: ArrayList<Photos?>, clear: Boolean = false) {
+//        if (clear) {
+//            list.clear()
+//        }
+//        list.addAll(currentList)
+//        notifyDataSetChanged()
+//    }
+}
+
+private class PhotoDiffCallback : DiffUtil.ItemCallback<Photos>() {
+    override fun areItemsTheSame(oldItem: Photos, newItem: Photos): Boolean {
+        return oldItem.result_id == newItem.result_id
+    }
+
+    override fun areContentsTheSame(oldItem: Photos, newItem: Photos): Boolean {
+        return oldItem == newItem
     }
 }

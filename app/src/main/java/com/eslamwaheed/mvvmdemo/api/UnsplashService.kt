@@ -13,7 +13,7 @@ interface UnsplashService {
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
         @Query("client_id") clientId: String = BuildConfig.UNSPLASH_ACCESS_KEY
-    ): UnsplashSearchResponse?
+    ): UnsplashSearchResponse
 
     companion object {
         const val BASE_URL = "https://api.unsplash.com/"

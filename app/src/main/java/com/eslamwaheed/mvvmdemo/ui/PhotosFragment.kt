@@ -6,16 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.eslamwaheed.mvvmdemo.adapters.PhotosAdapter
 import com.eslamwaheed.mvvmdemo.databinding.FragmentPhotosBinding
 import com.eslamwaheed.mvvmdemo.viewmodels.UnsplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PhotosFragment : Fragment() {
     private lateinit var binding: FragmentPhotosBinding
     private val viewModel: UnsplashViewModel by viewModels()
     private val adapter: PhotosAdapter by lazy { PhotosAdapter() }
+    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,11 +33,21 @@ class PhotosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.rvPhotos.adapter = adapter
+        search("flower")
+//        viewModel.unsplashSearchResponseLiveData.observe(viewLifecycleOwner) {
+//            it?.let {
+//                adapter.setList(it)
+//                binding.rvPhotos.adapter = adapter
+//            }
+//        }
+    }
 
-        viewModel.unsplashSearchResponseLiveData.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.setList(it)
-                binding.rvPhotos.adapter = adapter
+    private fun search(query: String) {
+        searchJob?.cancel()
+        searchJob = lifecycleScope.launch {
+            viewModel.searchPictures(query)?.collectLatest {
+                adapter.submitData(it)
             }
         }
     }
